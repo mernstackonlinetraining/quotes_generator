@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+p {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 20px;
+  line-height: 28px;
+}

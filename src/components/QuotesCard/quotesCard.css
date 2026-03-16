@@ -1,0 +1,37 @@
+.custom-quotes-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.quote-text {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.quote-author {
+    color: #777;
+    font-size: 16px;
+}
+
+.generate-btn {
+    background-color: rgb(27, 186, 178);
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.generate-btn:hover {
+    background-color: rgb(9, 168, 160);
+}
+
+.generate-btn:active {
+    background-color: rgb(17, 142, 136);
+}
