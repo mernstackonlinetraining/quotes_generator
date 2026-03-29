@@ -11,22 +11,46 @@ function App() {
     fetchRandomQuote();
   }, []);
 
+  const mapToCardShape = (content, author) => ({
+    content,
+    author: (author && String(author).trim()) || "Unknown",
+  });
+
   const fetchRandomQuote = () => {
     setIsLoading(true);
-    fetch("https://api.quotable.io/random")
-      .then((res) => res.json())
+    fetch("https://dummyjson.com/quotes/random")
+      .then((res) => {
+        if (!res.ok) throw new Error("Primary API failed");
+        return res.json();
+      })
       .then((data) => {
-        setQuote(data);
-        setIsLoading(false);
-      });
+        setQuote(mapToCardShape(data.quote, data.author));
+      })
+      .catch(() =>
+        fetch("https://zenquotes.io/api/random")
+          .then((res) => {
+            if (!res.ok) throw new Error("Fallback failed");
+            return res.json();
+          })
+          .then((arr) => {
+            const item = Array.isArray(arr) ? arr[0] : null;
+            if (!item?.q) throw new Error("Invalid fallback payload");
+            setQuote(mapToCardShape(item.q, item.a));
+          })
+      )
+      .catch(() => {
+        setQuote({
+          content:
+            "Could not load a quote right now. Please try again in a moment.",
+        });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const generateNewQuote = (e) => {
     e.preventDefault();
     fetchRandomQuote();
   };
-
-  console.log("quote  :: ", quote);
 
   return (
     <div>
